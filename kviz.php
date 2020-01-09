@@ -42,7 +42,7 @@ $conn->set_charset('utf8');
     }
     if (count($num_array) == 10) {
         echo "<div class='kraj_kviza' >";
-            echo "<h1>Cestitamo!</h1>";
+            echo "<h1>Čestitamo</h1>";
             echo "<div class='broj_bodova' >";
                 echo "<label>Broj bodova koji ste osvojili: </label>";
                 echo "<input value=".$brojac.">";
@@ -57,7 +57,7 @@ $conn->set_charset('utf8');
     } else {
         do {
             //do while da se neko pitanje ne ponovi 2 puta
-            $random_number = rand(16, 17);
+            $random_number = rand(18, 27);
         } while (in_array($random_number, $num_array));
         array_push($num_array, $random_number);
         //dodavanje array u sesion da se moze pristupiti nakon POST
