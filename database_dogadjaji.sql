@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 04:48 PM
+-- Generation Time: Jan 09, 2020 at 08:54 PM
 -- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,7 @@ CREATE TABLE `dogadjaji` (
 --
 
 INSERT INTO `dogadjaji` (`dogadja_id`, `naziv`, `detalji`, `datum`, `grad_id`, `kategorija_id`, `korisnik_id`) VALUES
-(1, 'Kosarkaska utakmica Borac - Crvena Zvezda', 'Mec ce se odigrati u Sportskoj dvorani Borik. Ulaznice mozete kupiti vec sada po cijeni od NEVJEROVATNIH 5 KM. \r\nAli ni to nije sve, ako pozovete odmah i kupiti 50 karata, jednu dobijate gratis...\r\nPa gdje to ima, SAMO KOD NAS!!!.', '2019-11-20 20:00:00', 1, 2, 1);
+(12, 'test', 'test', '2020-01-16 00:00:00', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -79,8 +79,7 @@ CREATE TABLE `kategorije` (
 --
 
 INSERT INTO `kategorije` (`kategorija_id`, `kategorija_naziv`) VALUES
-(1, 'umjetnost'),
-(2, 'sport');
+(1, 'umjetnost');
 
 -- --------------------------------------------------------
 
@@ -90,18 +89,17 @@ INSERT INTO `kategorije` (`kategorija_id`, `kategorija_naziv`) VALUES
 
 CREATE TABLE `komentari` (
   `komentar_id` int(11) NOT NULL,
-  `komentar_tekst` varchar(3000) COLLATE utf8_bin NOT NULL,
-  `dogadjaj_id` int(11) NOT NULL
+  `komentar_tekst` varchar(3000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dogadjaj_id` int(11) NOT NULL,
+  `komentator` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Anonymous'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `komentari`
 --
 
-INSERT INTO `komentari` (`komentar_id`, `komentar_tekst`, `dogadjaj_id`) VALUES
-(1, 'Wau kakva ponuda', 1),
-(2, 'Ma dolazim bre iz Beograda da se obracunam sa Lesinarima ale le lee', 1),
-(3, 'Cekamo vas Beogradjani aaa', 1);
+INSERT INTO `komentari` (`komentar_id`, `komentar_tekst`, `dogadjaj_id`, `komentator`) VALUES
+(66, 'tseatćččšđžž', 12, 'Brane');
 
 -- --------------------------------------------------------
 
@@ -144,6 +142,37 @@ INSERT INTO `kviz` (`pitanje_id`, `pitanje_tekst`, `tacan_odg`, `pogresan_odg_1`
 (1, 'Kako se zove Jelena?', 'Jelena', 'Nikola', 'Sanja'),
 (2, 'Delije su navijaci koejg kluba?', 'Crvena Zvezda', 'Partizan', 'Borac Banja Luka'),
 (3, 'Pitanje 3', 'Tacan odg', 'Netacan', 'Netacan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kviz2`
+--
+
+CREATE TABLE `kviz2` (
+  `id` int(11) NOT NULL,
+  `pitanje` text COLLATE utf8_unicode_ci NOT NULL,
+  `odgovor_1` text COLLATE utf8_unicode_ci NOT NULL,
+  `odgovor_2` text COLLATE utf8_unicode_ci NOT NULL,
+  `odgovor_3` text COLLATE utf8_unicode_ci NOT NULL,
+  `tacan_odgovor` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kviz2`
+--
+
+INSERT INTO `kviz2` (`id`, `pitanje`, `odgovor_1`, `odgovor_2`, `odgovor_3`, `tacan_odgovor`) VALUES
+(18, 'Kako se zove rijeka koja protiče kroz Banju Luku?', 'Sana', 'Vrbas', 'Una', 'Vrbas'),
+(19, 'Koje godine je Banju Luku potresao zemljotres?', '1965.', '1962.', '1969.', '1969.'),
+(20, 'Kako se zove čuvena tvrđava u Banjoj Luci?', 'Tvrđava Kastel', 'Kalemegdanska tvrđava', 'Petrovaradinska tvrđava', 'Tvrđava Kastel'),
+(21, 'Koji čuveni srpski pjesnik, pisac i političar je rođen u okolini Banje Luke?', 'Petar Kočić', 'Jovan Dučić', 'Branko Ćopić', 'Petar Kočić'),
+(22, 'Banjaluka je nadaleko poznata po jednom specijalitetu. Šta to morate obavezno pojesti u Banjoj Luci:', 'Kebab', 'Šnicle', 'Ćevape', 'Ćevape'),
+(23, 'Kada treba da se sastanete sa nekim u Banjoj Luci, bilo da ste turista ili stanovnik ovog grada, lokacija je uvijek ista. Koje to mjesto simboliše susrete u Banjaluci?', 'Krivi sat', 'Krivi toranj', 'Krivo zvono', 'Krivi sat'),
+(24, 'Banjaluku prati jedna legenda, kažu da je slična onoj u Veroni. Kako se to zovu banjalučki Romeo i Julija?', 'Adam i Eva', 'Omer i Safikada', 'Laza i Lenka', 'Omer i Safikada'),
+(25, 'U Banjoj Luci ste sigurno čuli i jedan zanimljiv podatak , a to je:', 'U Banjoj Luci živi sedam puta vise žena nego muškaraca.', 'Najveći pravoslavni hram se nalazi u Banjoj Luci.', 'Najprodavanije povrće u Banjoj Luci je kupus.', 'U Banjoj Luci živi sedam puta vise žena nego muškaraca.'),
+(26, 'Sport u Banjoj Luci je imao, ima i imaće posebno mjesto, kao važan segment u razvoju i napretku grada na Vrbasu. Kako se zove poznati sportski klub u ovom gradu?', 'Borac', 'Partizan', 'Dinamo', 'Borac'),
+(27, 'Priroda u okolini Banje Luke je još jedan razlog da ostanete dan vise u obom gradu. Koje je to poznato izletište u blizini grada?', 'Kozara', 'Banj brdo', 'Fruška gora', 'Banj brdo');
 
 --
 -- Indexes for dumped tables
@@ -190,6 +219,12 @@ ALTER TABLE `kviz`
   ADD PRIMARY KEY (`pitanje_id`);
 
 --
+-- Indexes for table `kviz2`
+--
+ALTER TABLE `kviz2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -197,7 +232,7 @@ ALTER TABLE `kviz`
 -- AUTO_INCREMENT for table `dogadjaji`
 --
 ALTER TABLE `dogadjaji`
-  MODIFY `dogadja_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dogadja_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `gradovi`
@@ -209,13 +244,13 @@ ALTER TABLE `gradovi`
 -- AUTO_INCREMENT for table `kategorije`
 --
 ALTER TABLE `kategorije`
-  MODIFY `kategorija_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `kategorija_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `komentari`
 --
 ALTER TABLE `komentari`
-  MODIFY `komentar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `komentar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
@@ -230,6 +265,12 @@ ALTER TABLE `kviz`
   MODIFY `pitanje_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `kviz2`
+--
+ALTER TABLE `kviz2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -237,15 +278,15 @@ ALTER TABLE `kviz`
 -- Constraints for table `dogadjaji`
 --
 ALTER TABLE `dogadjaji`
-  ADD CONSTRAINT `dogadjaji_ibfk_1` FOREIGN KEY (`grad_id`) REFERENCES `gradovi` (`grad_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `dogadjaji_ibfk_3` FOREIGN KEY (`kategorija_id`) REFERENCES `kategorije` (`kategorija_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `dogadjaji_ibfk_1` FOREIGN KEY (`grad_id`) REFERENCES `gradovi` (`grad_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dogadjaji_ibfk_3` FOREIGN KEY (`kategorija_id`) REFERENCES `kategorije` (`kategorija_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dogadjaji_ibfk_4` FOREIGN KEY (`korisnik_id`) REFERENCES `korisnici` (`korisnik_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `komentari`
 --
 ALTER TABLE `komentari`
-  ADD CONSTRAINT `komentari_ibfk_1` FOREIGN KEY (`dogadjaj_id`) REFERENCES `dogadjaji` (`dogadja_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `komentari_ibfk_1` FOREIGN KEY (`dogadjaj_id`) REFERENCES `dogadjaji` (`dogadja_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
