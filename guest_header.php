@@ -34,16 +34,12 @@
         <li class="nav-item">
           <a class="nav-link" href="kategorije.php">Kategorije</a>
         </li>
+        <!--
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Pregled
         </a>
             <div class="dropdown-menu" aria-labelledby="dropDown">
-              <!--
-              <option class="dropdown-item" value="danasnji_dogadjaji">Danasnjih dogadjaja</option>
-              <option class="dropdown-item" value="buduci_dogadjaji">Buducih dogadjaja</option>
-              <option class="dropdown-item" value="prosli_dogadjaji">Proslih dogadjaja</option>
-              <option class="dropdown-item" value="kategorija_dogadjaji">Kategorija dogadjaja</option>-->
               <form  method="POST" action=""> 
                 <button class="dropdown-item"  name="btnSviDogadjaji" id="btnSviDogadjaji" type="submit">Svi dogadjaja</button>
                 <button class="dropdown-item"  name="btnDanasnjiDogadjaji" id="btnDanasnjiDogadjaji" type="submit">Danasnjih dogadjaja</button>
@@ -52,7 +48,7 @@
                 <button class="dropdown-item" name="btnSortirajPoDatumu" id="btnSortirajPoDatumu" type="submit">Sortiraj po datumu</button>
               </form>
             </div>
-      </li>
+      </li> -->
       <li class="nav-item">
           <a class="nav-link" href="kviz_start.php">Kviz</a>
         </li>

@@ -74,9 +74,27 @@ function prikazi($DB, $query_string)
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">EVENTINIJUM</h1>
-      <p class="lead text-muted">O nama ili nestoo....</p>
+      <!--<p class="lead text-muted"></p>-->
     </div>
   </section>
+
+  <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle float-right" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pregled
+        </button>
+            <div class="dropdown-menu" aria-labelledby="dropDown">
+
+              <form  method="POST" action=""> 
+
+              <button class="dropdown-item"  name="btnSviDogadjaji" id="btnSviDogadjaji" type="submit">Svi dogadjaji</button>
+              <button class="dropdown-item"  name="btnDanasnjiDogadjaji" id="btnDanasnjiDogadjaji" type="submit">Danasnjih dogadjaji</button>
+              <button class="dropdown-item" name="btnBuduciDogadjaji" id="btnBuduciDogadjaji" type="submit">Buduci dogadjaji</button>
+              <button class="dropdown-item" name="btnProsliDogadjaji" id="btnProsliDogadjaji" type="submit">Prosli dogadjaji</button>
+              <button class="dropdown-item" name="btnSortirajPoDatumuA" id="btnSortirajPoDatumuA" type="submit">Sortiraj po datumu ASC</button>
+              <button class="dropdown-item" name="btnSortirajPoDatumuD" id="btnSortirajPoDatumuD" type="submit">Sortiraj po datumu DESC</button>
+              </form>
+            </div>
+      </div>
 
  
 
