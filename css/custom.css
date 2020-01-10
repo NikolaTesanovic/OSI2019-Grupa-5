@@ -1,0 +1,20 @@
+.event-card {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.event-card:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.event-card:not([href]) {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.event-card:not([href]):hover {
+    text-decoration: none;
+    background-color: transparent;
+}

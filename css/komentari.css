@@ -1,0 +1,44 @@
+.komentari_cont{
+    margin:auto;
+    padding: 10px;
+    width: 80%;
+    
+    -webkit-box-shadow: 7px -4px 21px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px -4px 21px -10px rgba(0,0,0,0.75);
+    box-shadow: 7px -4px 21px -10px rgba(0,0,0,0.75);
+}
+.komentari_cont #koment_naziv{
+   font-size: 20px;
+   font-weight: 800;
+}
+.komentar{
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+}
+.obrisi_btn{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+ background-color: blue;
+}
+.new_comment{
+  display: none;
+}
+.new_comment form {
+
+  padding: 10px;
+}
+.new_comment form textarea{
+  width: 100%;
+  border-radius: 10px;
+}
+.new_comment form input{
+  margin-top: 10px;
+}
+.new_comment form input{
+  margin: 5px 5px 5px 0;
+  width: 300px;
+}
