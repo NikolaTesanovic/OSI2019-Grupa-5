@@ -1,3 +1,8 @@
+<?php
+   session_start();
+   session_destroy();
+?>
+
 <?php 
 include("database.php");
 switch (login()) {
@@ -19,7 +24,6 @@ switch (login()) {
 }
 ?>
 
- 
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -48,15 +52,10 @@ switch (login()) {
       <input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" name="remember" value="remember-me"> Zapamti me
-        </label>
-      </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Prijavite se</button>
-      <a class="btn btn-lg btn-primary btn-block" href="guest_menu.php" role="button">Nastavite kao guest</a>
+      <a class="btn btn-lg btn-primary btn-block" href="guest_menu.php" role="button">Nastavite bez prijave</a>
 
-      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2019 Eventinijum</p>
     </form>
   </body>
 </html>
