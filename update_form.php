@@ -7,6 +7,10 @@ include("admin_header.php");
 <html lang="en">
   <head>
     <?php
+
+      $DB->set_charset('utf8');
+
+
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
           $update_id = (int) $_POST['id'];
@@ -90,6 +94,9 @@ include("admin_header.php");
               <?php
               //postavimo da je selektovan grad koji je trenutno u bazi
 
+                $DB->set_charset('utf8');
+
+                
                 $update_id = (int) $_POST['id'];
                 $query = "SELECT dogadjaji.grad_id, gradovi.grad_naziv FROM dogadjaji LEFT JOIN gradovi ON dogadjaji.grad_id = gradovi.grad_id WHERE dogadja_id = $update_id";
 

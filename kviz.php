@@ -15,6 +15,7 @@
     <?php
     require("database.php");
 //podaci potrebni da se poveze na bazu podataka
+
 $servername = "localhost";
 $username   = "root";
 $password   = "";
@@ -22,6 +23,8 @@ $dbname     = "database_dogadjaji";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 $conn->set_charset('utf8');
+
+
 
 //    provjera da li je uradjen submit
     if (isset($_POST['submit'])) {
@@ -66,6 +69,9 @@ $conn->set_charset('utf8');
         $sql= "SELECT * FROM kviz2 WHERE id =" . $random_number;
         //izvrsavanje query-a, iznad je samo deklarisan format sql ovde se izvrsava
         $result= $conn->query($sql);
+
+
+
         //uzima se jedan red iz result
         if ($row = $result->fetch_assoc()) {
             echo "<div class='kviz_form' >";

@@ -34,6 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 ?>
 
 <?php
+
+
+$DB->set_charset('utf8');
+
+
 if(isset($_SESSION['sort']) && !empty($_SESSION['sort']))
 {
     $datum = date("Y-m-d");
