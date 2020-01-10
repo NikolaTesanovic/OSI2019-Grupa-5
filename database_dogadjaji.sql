@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Jan 09, 2020 at 08:54 PM
-=======
 -- Generation Time: Jan 09, 2020 at 05:57 PM
->>>>>>> 3f268bb9961365f4142c9de9b44b631ad2c7c2ee
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -167,20 +163,7 @@ CREATE TABLE `kviz2` (
 --
 
 INSERT INTO `kviz2` (`id`, `pitanje`, `odgovor_1`, `odgovor_2`, `odgovor_3`, `tacan_odgovor`) VALUES
-<<<<<<< HEAD
-(18, 'Kako se zove rijeka koja protiče kroz Banju Luku?', 'Sana', 'Vrbas', 'Una', 'Vrbas'),
-(19, 'Koje godine je Banju Luku potresao zemljotres?', '1965.', '1962.', '1969.', '1969.'),
-(20, 'Kako se zove čuvena tvrđava u Banjoj Luci?', 'Tvrđava Kastel', 'Kalemegdanska tvrđava', 'Petrovaradinska tvrđava', 'Tvrđava Kastel'),
-(21, 'Koji čuveni srpski pjesnik, pisac i političar je rođen u okolini Banje Luke?', 'Petar Kočić', 'Jovan Dučić', 'Branko Ćopić', 'Petar Kočić'),
-(22, 'Banjaluka je nadaleko poznata po jednom specijalitetu. Šta to morate obavezno pojesti u Banjoj Luci:', 'Kebab', 'Šnicle', 'Ćevape', 'Ćevape'),
-(23, 'Kada treba da se sastanete sa nekim u Banjoj Luci, bilo da ste turista ili stanovnik ovog grada, lokacija je uvijek ista. Koje to mjesto simboliše susrete u Banjaluci?', 'Krivi sat', 'Krivi toranj', 'Krivo zvono', 'Krivi sat'),
-(24, 'Banjaluku prati jedna legenda, kažu da je slična onoj u Veroni. Kako se to zovu banjalučki Romeo i Julija?', 'Adam i Eva', 'Omer i Safikada', 'Laza i Lenka', 'Omer i Safikada'),
-(25, 'U Banjoj Luci ste sigurno čuli i jedan zanimljiv podatak , a to je:', 'U Banjoj Luci živi sedam puta vise žena nego muškaraca.', 'Najveći pravoslavni hram se nalazi u Banjoj Luci.', 'Najprodavanije povrće u Banjoj Luci je kupus.', 'U Banjoj Luci živi sedam puta vise žena nego muškaraca.'),
-(26, 'Sport u Banjoj Luci je imao, ima i imaće posebno mjesto, kao važan segment u razvoju i napretku grada na Vrbasu. Kako se zove poznati sportski klub u ovom gradu?', 'Borac', 'Partizan', 'Dinamo', 'Borac'),
-(27, 'Priroda u okolini Banje Luke je još jedan razlog da ostanete dan vise u obom gradu. Koje je to poznato izletište u blizini grada?', 'Kozara', 'Banj brdo', 'Fruška gora', 'Banj brdo');
-=======
 (17, 'test123 ćććććčđšđć', 'test123 ćććććčđšđć', 'test123 ćććććčđšđć', 'test123 ćććććčđšđć', 'test123 ćććććčđšđć');
->>>>>>> 3f268bb9961365f4142c9de9b44b631ad2c7c2ee
 
 --
 -- Indexes for dumped tables
@@ -276,11 +259,7 @@ ALTER TABLE `kviz`
 -- AUTO_INCREMENT for table `kviz2`
 --
 ALTER TABLE `kviz2`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
->>>>>>> 3f268bb9961365f4142c9de9b44b631ad2c7c2ee
 
 --
 -- Constraints for dumped tables
