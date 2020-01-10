@@ -44,11 +44,10 @@ function admin_in_database($username, $pass){
 	$username = mysqli_real_escape_string($DB, $username);
 	//$pass = md5($pass); ako budemo hashovali password-e
 	$pass = mysqli_real_escape_string($DB, $pass);
-	$result = $DB->query("SELECT 'korisnik_id' FROM `korisnici` WHERE `korisnik_ime`='$username' AND `korisnik_sifra`='$pass'");
+	$result = $DB->query("SELECT korisnik_id FROM `korisnici` WHERE `korisnik_ime`='$username' AND `korisnik_sifra`='$pass'");
 
 	if (mysqli_num_rows($result)!=1)return 0;
 	return $result->fetch_assoc()['korisnik_id'];
 }
-
 
 ?>
