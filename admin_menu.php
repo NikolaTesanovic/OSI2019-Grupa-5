@@ -1,22 +1,16 @@
 <?php
 include("admin.php");
 include("admin_header.php");
-//require("config.php");
 ?>
 
 <?php
-
-
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['_METHOD'] == 'DELETE')) 
 {
     $id = (int) $_POST['id'];
 
-
-    $connect =  mysqli_connect($DATABASE['host'], $DATABASE['username'], $DATABASE['password'], $DATABASE['database'] );
-
     $query = "DELETE FROM dogadjaji WHERE dogadja_id = $id";
-    $result = mysqli_query($connect, $query);
+    $result = mysqli_query($DB, $query);
 
 
     if ($result) 
@@ -25,134 +19,185 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['_METHOD'] == 'DELETE'))
     }
 
     header("Location: #");
-
-    //unset($result);
 } 
 else if(($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['_METHOD'] == 'UPDATE'))
 {
     $id = (int) $_POST['id'];
 
+}else if(($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['_METHOD'] == 'UPDATE')){
+    $id = (int) $_POST['id'];
 }
 
 ?>
 
 
-<main role="main">
+<?php
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">EVENTINIJUM</h1>
-      <p class="lead text-muted">Projekat za SVE bodove... </p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">IVANOVIC</a>
-        <a href="#" class="btn btn-secondary my-2">IVANOVIC_BUTTON</a>
-      </p>
-    </div>
-  </section>
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
+      if (isset($_POST['btnSviDogadjaji']))
+      {
+        $_SESSION['sort'] = "svi_dogadjaji";
+        header("Location: #");
+      }
+      elseif (isset($_POST['btnDanasnjiDogadjaji'])) 
+      {
+          $_SESSION['sort'] = "danasnji_dogadjaj";
+          header("Location: #");
+      }
+      elseif (isset($_POST['btnBuduciDogadjaji'])) {
+        $_SESSION['sort'] = "buduci_dogadjaj";
+          header("Location: #");
+      }
+      elseif (isset($_POST['btnProsliDogadjaji'])) {
+        $_SESSION['sort'] = "prosli_dogadjaj";
+          header("Location: #");
+      }
+      elseif (isset($_POST['btnSortirajPoDatumuA'])) {
+        $_SESSION['sort'] = "sortiraj_po_datumuA";
+          header("Location: #");
+      }
+      elseif (isset($_POST['btnSortirajPoDatumuD'])) {
+        $_SESSION['sort'] = "sortiraj_po_datumuD";
+          header("Location: #");
+      }
+}
+?>
 
- 
+<?php
+if(isset($_SESSION['sort']) && !empty($_SESSION['sort']))
+{
+    $datum = date("Y-m-d");
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-      <?php
-        $connect =  mysqli_connect($DATABASE['host'], $DATABASE['username'], $DATABASE['password'], $DATABASE['database'] );
+    if($_SESSION['sort'] == "svi_dogadjaji")
+    {
+      prikazi($DB, "SELECT * FROM dogadjaji");
+    }
+    elseif($_SESSION['sort'] == "danasnji_dogadjaj") {
+        prikazi($DB, "SELECT * FROM dogadjaji WHERE datum = '".$datum."'");
+    }
+    else if($_SESSION['sort'] == "buduci_dogadjaj"){
+        prikazi($DB, "SELECT * FROM dogadjaji WHERE datum >'".$datum."'");
 
-        $query = "SELECT * FROM dogadjaji";
-        $result = mysqli_query($connect, $query);
+    }
+    else if($_SESSION['sort'] == "prosli_dogadjaj"){
+        prikazi($DB, "SELECT * FROM dogadjaji WHERE datum < '".$datum."'");
 
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_array($result)){
+    }
+    else if($_SESSION['sort'] == "sortiraj_po_datumuA"){
+        prikazi($DB, "SELECT * FROM dogadjaji ORDER BY datum ASC");
+    }
+    else if($_SESSION['sort'] == "sortiraj_po_datumuD"){
+      prikazi($DB, "SELECT * FROM dogadjaji ORDER BY datum DESC");
+  }
+}
+else
+{
+    prikazi($DB, "SELECT * FROM dogadjaji");
+}
+?>
 
-            
+
+<?php 
+
+function prikazi($DB, $query_string)
+{
+?>
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">EVENTINIJUM</h1>
+          <!--<p class="lead text-muted">Admin meni</p>-->
+        </div>
+      </section>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle float-right" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pregled
+        </button>
+            <div class="dropdown-menu" aria-labelledby="dropDown">
+
+              <form  method="POST" action=""> 
+
+              <button class="dropdown-item"  name="btnSviDogadjaji" id="btnSviDogadjaji" type="submit">Svi dogadjaji</button>
+              <button class="dropdown-item"  name="btnDanasnjiDogadjaji" id="btnDanasnjiDogadjaji" type="submit">Danasnjih dogadjaji</button>
+              <button class="dropdown-item" name="btnBuduciDogadjaji" id="btnBuduciDogadjaji" type="submit">Buduci dogadjaji</button>
+              <button class="dropdown-item" name="btnProsliDogadjaji" id="btnProsliDogadjaji" type="submit">Prosli dogadjaji</button>
+              <button class="dropdown-item" name="btnSortirajPoDatumuA" id="btnSortirajPoDatumuA" type="submit">Sortiraj po datumu ASC</button>
+              <button class="dropdown-item" name="btnSortirajPoDatumuD" id="btnSortirajPoDatumuD" type="submit">Sortiraj po datumu DESC</button>
+              </form>
+            </div>
+      </div>
+     
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          <?php
+
+            $query = $query_string;
+            $result = mysqli_query($DB, $query);
+
+            if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_array($result)){
+          ?>
         
-      ?>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm ">
+                <div class="card-body">
+                  <p class="card-text">                 
+                    <?php 
+                      echo "<h3>".$row["naziv"]."</h3>";  
+                      echo "<br>";                            
+                      echo $row["detalji"];                                   
+                    ?>
+                  </p>
+                    
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <form  method="POST" onsubmit="return confirm('Da li si siguran da zelis da obrises???');">
+                          <input type="hidden" name="id" value="<?php echo $row["dogadja_id"]; ?>">    
+                          <button type="submit" class="btn btn-sm btn-outline-secondary" name ="_METHOD" value="DELETE" >Obrisi događaj</button>    
+                      </form>   
 
-      
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"/>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">DOGADJAJ</text>
-            </svg>
-            <div class="card-body">
-              <p class="card-text">                 
-                <?php 
-                      
-                echo "<strong>".$row["naziv"]."</strong>";  
-                echo "<br>";                            
-                echo $row["detalji"];
-                //OVO JE POKUSAJ DA SVE KARTICE BUDU ISTE VELICINE TJ. ISTI BROJ SLOVA HAHH
-                /*if(strlen($row["detalji"])==250){
-                    echo $row["detalji"]; 
-                }
-                else if (strlen($row["detalji"])>=247) {
-                    echo $row["detalji"];
-                    echo "...";
-                }
-                else{
-                  echo $row["detalji"];
-                  for ($i = strlen($row["detalji"]); $i <= 247; $i++) {
-                      echo "a";
-                  }
-                  echo "...";
-                }
-                */
+                      &nbsp;
 
-                                                    
-                  ?></p>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-
-
-                  
-
-                  <form  method="POST" onsubmit="return confirm('Da li si siguran da zelis da obrises???');">
-
-
-                          
+                      <form  method="POST" action="update_form.php" >
                           <input type="hidden" name="id" value="<?php echo $row["dogadja_id"]; ?>">
-                          
-                          <button type="submit" class="btn btn-sm btn-outline-secondary" name ="_METHOD" value="DELETE" >Obrisi dogadjaj</button>
-                          
-                  </form>   
+                          <button type="submit" class="btn btn-sm btn-outline-secondary " name ="_METHOD" value="UPDATE">Azuriraj dogadjaj</button>
+                      </form>
 
-                  <form  method="POST" action="update_form.php" >
-                      
-                      <input type="hidden" name="id" value="<?php echo $row["dogadja_id"]; ?>">
-                      <button type="submit" class="btn btn-sm btn-outline-secondary " name ="_METHOD" value="UPDATE">Azuriraj dogadjaj</button>
-                      
-                  </form>
-                  
+                      &nbsp;
+
+                      <form method="POST" action="komentari.php">
+                        <input type="hidden" name="id" value="<?php echo $row["dogadja_id"]; ?>">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="_METHOD" value="KOMENTAR">Komentarisi dogadjaj</button>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="align-items-center">
+                    <p class="text-muted text-center"><?php echo substr($row["datum"], 0,10); ?></p>
+                  </div>
                 </div>
-                <small class="text-muted"><?php echo substr($row["datum"], 0,10); ?></small>
               </div>
             </div>
+      
+          <?php
+          }
+
+          }
+          ?>
           </div>
         </div>
-      
-
-
-
-      
-  
-
-      <?php
-          }
-      }
-      ?>
-
       </div>
-    </div>
-  </div>
+    </main>
 
-
-    
-
-        
-        
-</main>
-
+<?php
+}
+?>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2019 Eventinijum</p>
+  </footer>
+</body>
 </html>

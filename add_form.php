@@ -3,24 +3,17 @@ include("admin.php");
 include("admin_header.php");
 ?>
 
-
-
 <!doctype html>
 <html lang="en">
   <head>
 
     <?php 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          // Something posted
-
           if (isset($_POST['btnSubmit'])) {
 
-            
-                $connect =  mysqli_connect($DATABASE['host'], $DATABASE['username'], $DATABASE['password'], $DATABASE['database'] );
-                
                 $query = "INSERT INTO dogadjaji (naziv, detalji, datum, grad_id, kategorija_id, korisnik_id) 
                 VALUES ('".$_POST['imeDogadjaja']."','".$_POST['opisDogadjaja']."','".$_POST['datum']."',".$_POST['grad_select'].",".$_POST['kategorija_select'].",".$_SESSION['userid'].")";
-                $result = mysqli_query($connect, $query);
+                $result = mysqli_query($DB, $query);
 
                 if ($result === TRUE) {
                     echo '<script>alert("Uspjesno dodat novi dogadjaj!!!")</script>';
@@ -28,30 +21,10 @@ include("admin_header.php");
                     echo '<script>alert("Greska pri dodavanju novog dogadjaja!!!")</script>';
                 }
 
-
           } else {
-              // Assume btnSubmit
           }
       }
-      
-
       ?>
-
-    <!--
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="ikona.ico">
-
-    <title>Eventinijum</title>
-    -->
-    <!-- Bootstrap core CSS 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    -->
-    <!-- Custom styles for this template 
-    <link href="form-validation.css" rel="stylesheet">
-    -->
 
     <!--
     <script>
@@ -70,22 +43,10 @@ include("admin_header.php");
         }
     </script>
   -->
-
-
-
-  </head>
-
-  
-
-  <body class="bg-light">
-
-
     
-    
-
-    
-    <div class="container">
+  <div class="container">
   <div class="py-5 text-center">
+    
     <img class="d-block mx-auto mb-4" src="ikona.ico" alt="" width="72" height="72">
     <h2>Add form</h2>
     <p class="lead">Forma za dodavanje novog dogadjaja</p>
@@ -94,23 +55,8 @@ include("admin_header.php");
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Forma za dodavanje</h4>
   
-
-
-
-
-
-      <form class="needs-validation" method="POST" action="" validate>
-        
-
-          
-        <div class="row"></div>
-        
-
-
-    
-
-      
-
+        <form class="needs-validation" method="POST" action="" validate>  
+        <div class="row"></div>    
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Ime dogadjaja</label>
@@ -120,12 +66,6 @@ include("admin_header.php");
             </div>
           </div>
         </div>
-
-        
-
-      
-
-        
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Opis dogadjaja</label>
@@ -137,61 +77,30 @@ include("admin_header.php");
             <input type="date" id="datum" name="datum" value="" required>
         </div>
 
-       
-      
-
-
-        
-
-
-
-<!--
-        <div class="mb-3">
-          <label for="address">Mjesto dogadjaja</label>
-          <input type="text" class="form-control" id="address" name="address" placeholder="Dodajte adresu dogadjaja"  required>
-          <div class="invalid-feedback">
-            Unesite vazecu adresu
-          </div>
-        </div>
--->
-
-
-<div class="row" id="bbb" style="display:inline">
+        <div class="row" id="bbb" style="display:inline">
           <div class="col-md-5 mb-3">
             <label for="grad">Izaberite kategoriju</label>
             <select class="custom-select d-block w-100" id="grad_select" name="grad_select" required>
 
-              <option value="">Izaberite grad...</option>
-
+            <option value="">Izaberite grad...</option>
               <?php
-                $connect =  mysqli_connect($DATABASE['host'], $DATABASE['username'], $DATABASE['password'], $DATABASE['database'] );
-
                 $query = "SELECT * FROM gradovi";
-                $result = mysqli_query($connect, $query);
+                $result = mysqli_query($DB, $query);
 
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
-
-                    
-                
               ?>
               <option value="<?php echo $row["grad_id"];?>"><?php echo $row["grad_naziv"];?></option>
               <?php
-                    }
                 }
-            ?>
+                }
+              ?>
             </select>
-
-            
-
-
             <div class="invalid-feedback">
               Morate izabrati kategoriju
             </div>
           </div>
         </div>
-
-
 
 
 <!--
@@ -204,10 +113,7 @@ include("admin_header.php");
             <label class="form-check-label" for="inlineRadio2">Dodajte novu kategoriju</label>
         </div>
         <div class="row"></div>
-
-        
-
-        -->
+-->
         <div class="row" id="A" style="display:inline">
           <div class="col-md-5 mb-3">
             <label for="kategorija">Izaberite kategoriju</label>
@@ -216,26 +122,19 @@ include("admin_header.php");
               <option value="">Izaberite kategoriju...</option>
 
               <?php
-                $connect =  mysqli_connect($DATABASE['host'], $DATABASE['username'], $DATABASE['password'], $DATABASE['database'] );
-
                 $query = "SELECT * FROM kategorije";
-                $result = mysqli_query($connect, $query);
+                $result = mysqli_query($DB, $query);
 
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
 
-                    
-                
               ?>
               <option value="<?php echo $row["kategorija_id"];?>"><?php echo $row["kategorija_naziv"];?></option>
               <?php
-                    }
                 }
-            ?>
+                }
+              ?>
             </select>
-
-            
-
 
             <div class="invalid-feedback">
               Morate izabrati kategoriju
@@ -243,13 +142,7 @@ include("admin_header.php");
           </div>
         </div>
 
-
-
-
-
-
-
-        <!--
+<!--
         <div class="row" id="B" style="display:none">
           <div class="col-md-6 mb-3">
             <label for="firstName">Ime kategorije</label>
@@ -259,17 +152,9 @@ include("admin_header.php");
             </div>
           </div>
         </div>
-      -->
-
-
-
-      
-
+-->
       <hr class="mb-4">
-        <button class="btn btn-primary btn-lg" name="btnSubmit" id="btnSubmit" type="submit">Dodajte dogadjaj</button>
-
-
-          
+        <button class="btn btn-primary btn-lg" name="btnSubmit" id="btnSubmit" type="submit">Dodajte dogadjaj</button> 
       </form>
     </div>
   </div>
