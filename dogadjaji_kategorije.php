@@ -9,6 +9,8 @@ if(check_login()){
 
 <?php
 
+$DB->set_charset('utf8');
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
